@@ -1,10 +1,16 @@
+import base64
 import streamlit as st
 import time
-import razorpay
+
 
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
 
-import streamlit as st
+def show_logo(url, width=120, justify="center"):
+    st.markdown(f"""
+    <div style="display: flex; justify-content: {justify}; margin-top: 10px;">
+        <img src="{url}" width="{width}">
+    </div>
+    """, unsafe_allow_html=True)
 
 def set_bg(image_url):
     st.markdown(f"""
@@ -43,13 +49,13 @@ def menu_title(name="Name of Dish", price="Price", desc=""):
     </div>
     """, unsafe_allow_html=True)
     
-def menu_item(name, price, desc=""):
+def menu_item(name, price, desc="",cu="₹"):
     st.markdown(f"""
     <div style="margin-bottom: 12px;">
         <div style="display: flex; align-items: center;">
             <span style="font-weight: 600;">{name.upper()}</span>
             <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
-            <span style="font-weight: 500;">₹{price}</span>
+            <span style="font-weight: 500;">{cu}{price}</span>
         </div>
         <div style="font-size: 12px; color: #666;">{desc}</div>
     </div>
@@ -79,15 +85,29 @@ def start_app(path):
 
 
 
+def get_base64(img_path):
+    with open(img_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
 
+img = get_base64("logo.png")
 
+# st.title("Ashu's Makeover",text_alignment="center")
+#====================================================================================
+# Display the logo at the top of the page, centered, with a height of 200px
+#====================================================================================#
+st.markdown(f"""
+    <div style="display:flex; justify-content:center; ">
+        <img src="data:image/png;base64,{img}" height="150px" alt="Logo">
+    </div>
+    
+""", unsafe_allow_html=True)
 
-st.title("☕ Maya's Cafe",text_alignment="center")
+# st.title("Maya's Cafe",text_alignment="center")
 # st.markdown("Welcome to Maya's Cafe!",text_alignment="center")
 st.markdown("""
 <div style="display: flex; align-items: center; text-align: center;">
   <hr style="flex: 1; border: none; border-top: 2px solid #999;">
-  <span style="padding: 0 10px; font-weight: 600;">MENU</span>
+  <span style="padding: 0 10px; font-weight: 800; font-size: 20px">MENU</span>
   <hr style="flex: 1; border: none; border-top: 2px solid #999;">
 </div>
 """, unsafe_allow_html=True)
@@ -140,17 +160,9 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-tabs = st.tabs(["Snacks","Food","Beverages"])
+tabs = st.tabs(["Food","Beverages"])
 
-tab1=tabs[1]
-snacks_tab = tabs[0]
-
-with snacks_tab:
-    # set_bg("https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y2FmZXxlbnwwfHwwfHx8MA%3D%3D&auto=format&fit=crop&w=800&q=60")
-    # menu_title()
-    menu_item("Espresso Tradicional", 70, "")
-    menu_item("Espresso Duplo", 100, "Double shot strong coffee")
-    menu_item("Cappuccino Italiano", 120, "Milk + foam + espresso")
+tab1=tabs[0]
 with tab1:
     food_tabs= st.tabs(['Momos', 'Pizza', 'Sandwich', 'Pasta', 'Nachos', 'French fries', 'Finger bites', 'Meal bowls', 'Sizzlers', 'Choice of dessert'])
     
@@ -163,7 +175,6 @@ with tab1:
         
     pizza_tab = food_tabs[1]
     with pizza_tab:
-        # set_bg("https://images.unsplash.com/photo-1548365328-9c0bfbf1e7c3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cGl6emF8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60")
         pizza = get_doc_data(db,"menu","pizza")
         
         for name,price in dict(zip(pizza["name"],pizza["price"])).items():
