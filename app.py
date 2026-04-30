@@ -6,14 +6,14 @@ import time
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
 
 # hide the streamlit menu and footer
-hide_st_style = """
-            <style>
-            #MainMenu {visibility: hidden;}
-            footer {visibility: hidden;}
-            header {visibility: hidden;}
-            </style>
-            """
-st.markdown(hide_st_style, unsafe_allow_html=True)
+# hide_st_style = """
+#             <style>
+#             #MainMenu {visibility: hidden;}
+#             footer {visibility: hidden;}
+#             header {visibility: hidden;}
+#             </style>
+#             """
+# st.markdown(hide_st_style, unsafe_allow_html=True)
 
 def show_logo(url, width=120, justify="center"):
     st.markdown(f"""
@@ -78,11 +78,11 @@ def set_bg(image_url):
 # Custom function to display menu items with name, price, and description in a styled format
 #==============================================================================================
 
-def menu_title(name="Name of Dish", price="Price", desc=""):
+def menu_title(name="Name", price="Price", desc=""):
     st.markdown(f"""
     <div style="margin-bottom: 12px;">
         <div style="display: flex; align-items: center;">
-            <span style="font-weight: 600;">{name.capitalize()}</span>
+            <span style="font-weight: 600;">{name.capitalize()}</span> 
             <div style="flex: 1; border-bottom: 1px  #999; margin: 0 10px;"></div>
             <span style="font-weight: 500;">{price}</span>
         </div>
@@ -200,7 +200,7 @@ st.markdown("""
 #====================================================================================
 # Display the logo at the top of the page, centered, with a height of 200px
 #====================================================================================
-img = get_base64(r"logo.png")
+img = get_base64(r"img\logo.png")
 
 st.markdown(f"""
     <div style="display:flex; justify-content:center; ">
@@ -230,21 +230,21 @@ with tab1:
     momos_tab = food_tabs[0]
     with momos_tab:
         momos = get_doc_data(db,"menu","momos")
-        
+        menu_title()
         for name,price in dict(zip(momos["name"],momos["price"])).items():
             menu_item(name,price) 
         
     pizza_tab = food_tabs[1]
     with pizza_tab:
         pizza = get_doc_data(db,"menu","pizza")
-        
+        menu_title()
         for name,price in dict(zip(pizza["name"],pizza["price"])).items():
             menu_item(name,price) 
         
     sandwich_tab = food_tabs[2]
     with sandwich_tab:
         sandwich = get_doc_data(db,"menu","sandwiches")
-        
+        menu_title()
         for name,price in dict(zip(sandwich["name"],sandwich["price"])).items():
             menu_item(name,price) 
             
@@ -252,13 +252,13 @@ with tab1:
     pasta_tab = food_tabs[3]
     with pasta_tab:
         # pasta = get_doc_data(db,"menu","pasta")
+        menu_title()
         st.write("Pasta coming soon! Stay tuned 🍝")
-
     
     nachos_tab = food_tabs[4]
     with nachos_tab:
         nachos = get_doc_data(db,"menu","nachos")
-        
+        menu_title()
         for name,price in dict(zip(nachos["name"],nachos["price"])).items():
             menu_item(name,price) 
     
@@ -266,20 +266,21 @@ with tab1:
     french_fries_tab = food_tabs[5]
     with french_fries_tab:
         french_fries = get_doc_data(db,"menu","french fries")
+        menu_title()
         for name,price in dict(zip(french_fries["name"],french_fries["price"])).items():
             menu_item(name,price)
 
     finger_bites_tab = food_tabs[6]
     with finger_bites_tab:
         finger_bites = get_doc_data(db,"menu","finger bites")
-        
+        menu_title()
         for name,price in dict(zip(finger_bites["name"],finger_bites["price"])).items():
             menu_item(name,price) 
         
     meal_bowls_tab = food_tabs[7]
     with meal_bowls_tab:
         meal_bowls = get_doc_data(db,"menu","meal bowl")
-        
+        menu_title()
         for name,price in dict(zip(meal_bowls["name"],meal_bowls["price"])).items():
             menu_item(name,price) 
 
@@ -288,7 +289,7 @@ with tab1:
     sizzler_tab = food_tabs[8]
     with sizzler_tab:
         sizzlers = get_doc_data(db,"menu","sizzlers")
-        
+        menu_title()
         for name,price in dict(zip(sizzlers["name"],sizzlers["price"])).items():
             menu_item(name,price) 
         
@@ -299,12 +300,49 @@ with tab1:
     dessert_tab = tabs[1]
     with dessert_tab:
         desserts = get_doc_data(db,"menu","dessert")
-        
+        menu_title()
         for name,price in dict(zip(desserts["name"],desserts["price"])).items():
             menu_item(name,price) 
     
     
     
     beverages_tab = tabs[2]
+    beverages=get_doc_data(db,"menu","beverages")
     with beverages_tab:
-        st.write("Beverages coming soon! Stay tuned ☕")
+        bev_tab=st.tabs(['Boba', 'Tea', 'Mocktails', 'Coffee', 'Milk shakes']) 
+        
+        boba_tab = bev_tab[0]
+        with boba_tab:
+            boba = beverages["boba"]
+            menu_title()
+            for name,price in dict(zip(boba["name"],boba["price"])).items():
+                menu_item(name,price) 
+                
+        tea_tab = bev_tab[1]
+        with tea_tab:
+            tea = beverages["tea"]
+            menu_title()
+            for name,price in dict(zip(tea["name"],tea["price"])).items():
+                menu_item(name,price)
+                
+        mocktails_tab = bev_tab[2]
+        with mocktails_tab:
+            mocktails = beverages["mocktails"]
+            menu_title()
+            for name,price in dict(zip(mocktails["name"],mocktails["price"])).items():
+                menu_item(name,price)
+                
+        coffee_tab = bev_tab[3]
+        with coffee_tab:
+            coffee = beverages["coffee"]
+            menu_title()
+            for name,price in dict(zip(coffee["name"],coffee["price"])).items():
+                menu_item(name,price)
+                
+        milk_shakes_tab = bev_tab[4]
+        with milk_shakes_tab:
+            milk_shakes = beverages["milk shakes"]
+            menu_title()
+            for name,price in dict(zip(milk_shakes["name"],milk_shakes["price"])).items():
+                menu_item(name,price)
+                
