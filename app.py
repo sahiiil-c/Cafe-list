@@ -280,6 +280,24 @@ st.markdown("""
 tabs = st.tabs(["Food","Desserts","Beverages"])
 
 tab1=tabs[0]
+
+st.markdown("""
+<style>
+/* Target tab container */
+div[data-baseweb="tab-list"] {
+    justify-content: flex-start; /* align left */
+    gap: 10px; /* space between tabs */
+    margin-right: 80px; /* <-- THIS is your right margin */
+}
+
+/* Optional: push tabs away from right */
+div[data-baseweb="tab-list"]::after {
+    content: "";
+    flex-grow: 1;
+}
+</style>
+""", unsafe_allow_html=True)
+
 with tab1:
     food_tabs= st.tabs(['Momos', 'Pizza', 'Sandwich', 'Pasta', 'Nachos', 'French fries', 'Finger bites', 'Meal bowls', 'Sizzlers'])
     
