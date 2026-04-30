@@ -218,7 +218,7 @@ st.markdown("""
 
 
 
-# set_bg_local(r"img\bg.jpeg")
+# set_bg_local(r"bg.jpeg")
 
 #================================================================================
 #START OF THE MAIN PAGE CONTENT
