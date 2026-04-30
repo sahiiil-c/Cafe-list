@@ -6,14 +6,14 @@ import time
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
 
 # hide the streamlit menu and footer
-# hide_st_style = """
-#             <style>
-#             #MainMenu {visibility: hidden;}
-#             footer {visibility: hidden;}
-#             header {visibility: hidden;}
-#             </style>
-#             """
-# st.markdown(hide_st_style, unsafe_allow_html=True)
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
 
 def show_logo(url, width=120, justify="center"):
     st.markdown(f"""
@@ -102,6 +102,33 @@ def menu_item(name, price, desc="",cu="₹"):
     </div>
     """, unsafe_allow_html=True)
 
+
+
+def menu_title_veg_nv(name="Name", veg_price="Veg", nonveg_price="Non Veg",desc=''):
+    st.markdown(f"""
+        <div style="margin-bottom: 12px;">
+            <div style="display: flex; align-items: center;">
+                <span style="font-weight: 600;">{name}</span>
+                <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
+                <div style="text-align: center;  margin-right: 30px;">Veg</div>
+                <div style="text-align: center; margin-right:35px;">Non Veg</div>
+            </div>
+            <div style="font-size: 12px; color: #666;">{desc}</div>
+        </div>
+        """, unsafe_allow_html=True)
+
+def menu_item_veg_nv(name, veg_price=None, nonveg_price=None, cu="₹",desc=""):
+    st.markdown(f"""
+        <div style="margin-bottom: 12px;">
+            <div style="display: flex; align-items: center;">
+                <span style="font-weight: 600;">{name.upper()}</span>
+                <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
+                <div style="text-align: center;  margin-right: 30px;">{cu}{veg_price}</div>
+                <div style="text-align: center; margin-right:55px;">{cu}{nonveg_price}</div>
+            </div>
+            <div style="font-size: 12px; color: #666;">{desc}</div>
+        </div>
+        """, unsafe_allow_html=True)
 
 
 #==============================================================================================
@@ -221,7 +248,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-tabs = st.tabs(["Food","Desserts","Beverages"])
+tabs = st.tabs(["Food","Desserts","Beverages","trial"])
 
 tab1=tabs[0]
 with tab1:
@@ -251,9 +278,15 @@ with tab1:
     
     pasta_tab = food_tabs[3]
     with pasta_tab:
-        # pasta = get_doc_data(db,"menu","pasta")
-        menu_title()
-        st.write("Pasta coming soon! Stay tuned 🍝")
+        pasta = get_doc_data(db,"menu","pasta")
+        pasta_keys = list(pasta.keys())
+        # menu_title()
+        menu_title_veg_nv()
+        for name,vp,nvp in list(zip(pasta["name"],pasta["veg"],pasta["non-veg"])):
+            menu_item_veg_nv(name, veg_price=vp, nonveg_price=nvp)
+        
+        
+        # st.write("Pasta coming soon! Stay tuned 🍝")
     
     nachos_tab = food_tabs[4]
     with nachos_tab:
@@ -345,4 +378,20 @@ with tab1:
             menu_title()
             for name,price in dict(zip(milk_shakes["name"],milk_shakes["price"])).items():
                 menu_item(name,price)
-                
+
+trial_tab = tabs[3]
+with trial_tab:
+    def trial_func(name, price, desc="",cu="₹"):
+        st.markdown(f"""
+        <div style="margin-bottom: 12px;">
+            <div style="display: flex; align-items: center;">
+                <span style="font-weight: 600;">{name.upper()}</span>
+                <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
+                <div style="text-align: center;  margin-left: 30px;">Veg</div>
+                <div style="text-align: center;   margin-left: 120px; margin-right:35px;">Non Veg</div>
+            </div>
+            <div style="font-size: 12px; color: #666;">{desc}</div>
+        </div>
+        """, unsafe_allow_html=True)
+        
+    trial_func("Pasta", 250)
