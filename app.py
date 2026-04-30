@@ -81,7 +81,7 @@ def set_bg(image_url):
 def menu_title(name="Name", price="Price", desc=""):
     st.markdown(f"""
     <div style="margin-bottom: 12px;">
-        <div style="display: flex; align-items: center;">
+        <div style="display: flex; align-items: center; border-bottom: 2px solid #999; padding-bottom: 4px; margin-bottom: 6px;">
             <span style="font-weight: 600;">{name.capitalize()}</span> 
             <div style="flex: 1; border-bottom: 1px  #999; margin: 0 10px;"></div>
             <span style="font-weight: 500;">{price}</span>
@@ -107,7 +107,7 @@ def menu_item(name, price, desc="",cu="₹"):
 def menu_title_veg_nv(name="Name", veg_price="Veg", nonveg_price="Non Veg",desc=''):
     st.markdown(f"""
         <div style="margin-bottom: 12px;">
-            <div style="display: flex; align-items: center;">
+            <div style="display: flex; align-items: center; border-bottom: 2px solid #999; padding-bottom: 4px; margin-bottom: 6px;">
                 <span style="font-weight: 600;">{name}</span>
                 <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
                 <div style="text-align: center;  margin-right: 25px;">Veg</div>
@@ -130,6 +130,17 @@ def menu_item_veg_nv(name, veg_price=None, nonveg_price=None, cu="₹",desc=""):
         </div>
         """, unsafe_allow_html=True)
 
+def pasta_title(name="Name", price="Price", desc=""):
+    st.markdown(f"""
+    <div style="margin-bottom: 12px;">
+        <div style="display: flex; align-items: center;">
+            <span style="font-weight: 600;">{name.capitalize()}</span> 
+            <div style="flex: 1; border-bottom: 1px  #999; margin: 0 10px;"></div>
+            <span style="font-weight: 500;">{price}</span>
+        </div>
+        <div style="font-size: 12px; color: #666;">{desc}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
 #==============================================================================================
 # Initialize Database connection
@@ -218,7 +229,7 @@ st.markdown("""
 
 
 
-# set_bg_local(r"bg.jpeg")
+# set_bg_local(r"img\bg.jpeg")
 
 #================================================================================
 #START OF THE MAIN PAGE CONTENT
@@ -227,7 +238,7 @@ st.markdown("""
 #====================================================================================
 # Display the logo at the top of the page, centered, with a height of 200px
 #====================================================================================
-img = get_base64(r"logo.png")
+img = get_base64(r"img/logo.png")
 
 st.markdown(f"""
     <div style="display:flex; justify-content:center; ">
@@ -280,7 +291,7 @@ with tab1:
     with pasta_tab:
         pasta = get_doc_data(db,"menu","pasta")
         pasta_keys = list(pasta.keys())
-        menu_title("Choice of pastas( Penne, Spaghetti, Macroni, Farfalle)","")
+        pasta_title("Choice of pastas (Penne, Spaghetti, Macroni, Farfalle)","")
         menu_title_veg_nv("Choice of sauce")
     
         for name,vp,nvp in list(zip(pasta["name"],pasta["veg"],pasta["non-veg"])):
@@ -379,4 +390,3 @@ with tab1:
             menu_title()
             for name,price in dict(zip(milk_shakes["name"],milk_shakes["price"])).items():
                 menu_item(name,price)
-
