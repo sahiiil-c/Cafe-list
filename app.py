@@ -5,11 +5,49 @@ import time
 
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
 
+# hide the streamlit menu and footer
+hide_st_style = """
+            <style>
+            #MainMenu {visibility: hidden;}
+            footer {visibility: hidden;}
+            header {visibility: hidden;}
+            </style>
+            """
+st.markdown(hide_st_style, unsafe_allow_html=True)
+
 def show_logo(url, width=120, justify="center"):
     st.markdown(f"""
     <div style="display: flex; justify-content: {justify}; margin-top: 10px;">
         <img src="{url}" width="{width}">
     </div>
+    """, unsafe_allow_html=True)
+
+import streamlit as st
+
+def set_bg_local(img_path):
+    img_base64 = get_base64(img_path)
+
+    st.markdown(f"""
+    <style>
+    .stApp {{
+        background: url("data:image/png;base64,{img_base64}");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        
+    /* DARK OVERLAY */
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 01);  /* adjust this */
+        z-index: -1;
+    }}
+    }}
+    </style>
     """, unsafe_allow_html=True)
 
 def set_bg(image_url):
@@ -36,6 +74,9 @@ def set_bg(image_url):
     </style>
     """, unsafe_allow_html=True)
 
+#==============================================================================================
+# Custom function to display menu items with name, price, and description in a styled format
+#==============================================================================================
 
 def menu_title(name="Name of Dish", price="Price", desc=""):
     st.markdown(f"""
@@ -60,7 +101,12 @@ def menu_item(name, price, desc="",cu="₹"):
         <div style="font-size: 12px; color: #666;">{desc}</div>
     </div>
     """, unsafe_allow_html=True)
+
+
+
+#==============================================================================================
 # Initialize Database connection
+#==============================================================================================
 placeholder = st.empty()
 def start_app(path):
     import firebase_admin
@@ -83,34 +129,17 @@ def start_app(path):
         placeholder.empty()
     return firestore.client()
 
-
-
+#==============================================================================================
+# Utility function to convert an image file to a base64 string for embedding in HTML/CSS
+#==============================================================================================
 def get_base64(img_path):
     with open(img_path, "rb") as f:
         return base64.b64encode(f.read()).decode()
 
-img = get_base64("logo.png")
 
-# st.title("Ashu's Makeover",text_alignment="center")
-#====================================================================================
-# Display the logo at the top of the page, centered, with a height of 200px
-#====================================================================================#
-st.markdown(f"""
-    <div style="display:flex; justify-content:center; ">
-        <img src="data:image/png;base64,{img}" height="150px" alt="Logo">
-    </div>
-    
-""", unsafe_allow_html=True)
 
-# st.title("Maya's Cafe",text_alignment="center")
-# st.markdown("Welcome to Maya's Cafe!",text_alignment="center")
-st.markdown("""
-<div style="display: flex; align-items: center; text-align: center;">
-  <hr style="flex: 1; border: none; border-top: 2px solid #999;">
-  <span style="padding: 0 10px; font-weight: 800; font-size: 20px">MENU</span>
-  <hr style="flex: 1; border: none; border-top: 2px solid #999;">
-</div>
-""", unsafe_allow_html=True)
+
+
 
 upper_placeholder = st.empty()
 mid_placeholder = st.container()
@@ -160,11 +189,43 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-tabs = st.tabs(["Food","Beverages"])
+
+
+# set_bg_local(r"img\bg.jpeg")
+
+#================================================================================
+#START OF THE MAIN PAGE CONTENT
+#================================================================================
+
+#====================================================================================
+# Display the logo at the top of the page, centered, with a height of 200px
+#====================================================================================
+img = get_base64(r"img\logo.png")
+
+st.markdown(f"""
+    <div style="display:flex; justify-content:center; ">
+        <img src="data:image/png;base64,{img}" height="150px" alt="Logo">
+    </div>
+    
+""", unsafe_allow_html=True)
+
+
+# st.title("Maya's Cafe",text_alignment="center")
+# st.markdown("Welcome to Maya's Cafe!",text_alignment="center")
+st.markdown("""
+<div style="display: flex; align-items: center; text-align: center;">
+  <hr style="flex: 1; border: none; border-top: 2px solid #999;">
+  <span style="padding: 0 10px; font-weight: 800; font-size: 20px">MENU</span>
+  <hr style="flex: 1; border: none; border-top: 2px solid #999;">
+</div>
+""", unsafe_allow_html=True)
+
+
+tabs = st.tabs(["Food","Desserts","Beverages"])
 
 tab1=tabs[0]
 with tab1:
-    food_tabs= st.tabs(['Momos', 'Pizza', 'Sandwich', 'Pasta', 'Nachos', 'French fries', 'Finger bites', 'Meal bowls', 'Sizzlers', 'Choice of dessert'])
+    food_tabs= st.tabs(['Momos', 'Pizza', 'Sandwich', 'Pasta', 'Nachos', 'French fries', 'Finger bites', 'Meal bowls', 'Sizzlers'])
     
     momos_tab = food_tabs[0]
     with momos_tab:
@@ -188,7 +249,11 @@ with tab1:
             menu_item(name,price) 
             
     
-    
+    pasta_tab = food_tabs[3]
+    with pasta_tab:
+        # pasta = get_doc_data(db,"menu","pasta")
+        st.write("Pasta coming soon! Stay tuned 🍝")
+
     
     nachos_tab = food_tabs[4]
     with nachos_tab:
@@ -230,9 +295,16 @@ with tab1:
        
             
             
-    dessert_tab = food_tabs[9]
+    #DESSERTS
+    dessert_tab = tabs[1]
     with dessert_tab:
         desserts = get_doc_data(db,"menu","dessert")
         
         for name,price in dict(zip(desserts["name"],desserts["price"])).items():
             menu_item(name,price) 
+    
+    
+    
+    beverages_tab = tabs[2]
+    with beverages_tab:
+        st.write("Beverages coming soon! Stay tuned ☕")
