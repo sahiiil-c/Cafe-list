@@ -247,7 +247,7 @@ st.markdown("""
 
 
 
-set_bg_local(r"img\bg.jpeg")
+set_bg_local(r"img/bg.jpeg")
 
 #================================================================================
 #START OF THE MAIN PAGE CONTENT
@@ -256,7 +256,7 @@ set_bg_local(r"img\bg.jpeg")
 #====================================================================================
 # Display the logo at the top of the page, centered, with a height of 200px
 #====================================================================================
-img = get_base64(r"img\logo.png")
+img = get_base64(r"img/logo.png")
 
 st.markdown(f"""
     <div style="display:flex; justify-content:center; margin-right: 50px;">
