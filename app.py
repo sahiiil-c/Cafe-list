@@ -111,7 +111,7 @@ def menu_title_veg_nv(name="Name", veg_price="Veg", nonveg_price="Non Veg",desc=
                 <span style="font-weight: 600;">{name}</span>
                 <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
                 <div style="text-align: center;  margin-right: 30px;">Veg</div>
-                <div style="text-align: center; margin-right:35px;">Non Veg</div>
+                <div style="text-align: center;">Non Veg</div>
             </div>
             <div style="font-size: 12px; color: #666;">{desc}</div>
         </div>
@@ -124,7 +124,7 @@ def menu_item_veg_nv(name, veg_price=None, nonveg_price=None, cu="₹",desc=""):
                 <span style="font-weight: 600;">{name.upper()}</span>
                 <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
                 <div style="text-align: center;  margin-right: 30px;">{cu}{veg_price}</div>
-                <div style="text-align: center; margin-right:55px;">{cu}{nonveg_price}</div>
+                <div style="text-align: center; margin-right:15px;">{cu}{nonveg_price}</div>
             </div>
             <div style="font-size: 12px; color: #666;">{desc}</div>
         </div>
@@ -227,7 +227,7 @@ st.markdown("""
 #====================================================================================
 # Display the logo at the top of the page, centered, with a height of 200px
 #====================================================================================
-img = get_base64(r"logo.png")
+img = get_base64(r"img\logo.png")
 
 st.markdown(f"""
     <div style="display:flex; justify-content:center; ">
@@ -280,8 +280,9 @@ with tab1:
     with pasta_tab:
         pasta = get_doc_data(db,"menu","pasta")
         pasta_keys = list(pasta.keys())
-        # menu_title()
-        menu_title_veg_nv()
+        menu_title("Choice of pastas( Penne, Spaghetti, Macroni, Farfalle)","")
+        menu_title_veg_nv("Choice of sauce")
+    
         for name,vp,nvp in list(zip(pasta["name"],pasta["veg"],pasta["non-veg"])):
             menu_item_veg_nv(name, veg_price=vp, nonveg_price=nvp)
         
