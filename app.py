@@ -114,7 +114,7 @@ def menu_item(name, price, desc="",cu="₹"):
         <div style="display: flex; align-items: center;">
             <span style="font-weight: 600;">{name.upper()}</span>
             <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
-            <span style="font-weight: 500;">{cu}{price}</span>
+            <span style="font-weight: 500;">{cu}{"----" if price == 0 else price}</span>
         </div>
         <div style="font-size: 12px; color: #666;">{desc}</div>
     </div>
