@@ -248,7 +248,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-tabs = st.tabs(["Food","Desserts","Beverages","trial"])
+tabs = st.tabs(["Food","Desserts","Beverages")
 
 tab1=tabs[0]
 with tab1:
@@ -380,19 +380,3 @@ with tab1:
             for name,price in dict(zip(milk_shakes["name"],milk_shakes["price"])).items():
                 menu_item(name,price)
 
-trial_tab = tabs[3]
-with trial_tab:
-    def trial_func(name, price, desc="",cu="₹"):
-        st.markdown(f"""
-        <div style="margin-bottom: 12px;">
-            <div style="display: flex; align-items: center;">
-                <span style="font-weight: 600;">{name.upper()}</span>
-                <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
-                <div style="text-align: center;  margin-left: 30px;">Veg</div>
-                <div style="text-align: center;   margin-left: 120px; margin-right:35px;">Non Veg</div>
-            </div>
-            <div style="font-size: 12px; color: #666;">{desc}</div>
-        </div>
-        """, unsafe_allow_html=True)
-        
-    trial_func("Pasta", 250)
