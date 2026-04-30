@@ -4,6 +4,7 @@ import time
 
 
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
+# hide the streamlit menu and footer
 st.markdown("""
     <style>
         /* Remove top padding of whole page */
@@ -23,7 +24,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# hide the streamlit menu and footer
 hide_st_style = """
             <style>
             #MainMenu {visibility: hidden;}
@@ -99,10 +99,10 @@ def set_bg(image_url):
 def menu_title(name="Name", price="Price", desc=""):
     st.markdown(f"""
     <div style="margin-bottom: 12px;">
-        <div style="display: flex; align-items: center; border-bottom: 2px solid #999; padding-bottom: 4px; margin-bottom: 6px;">
-            <span style="font-weight: 600;">{name.capitalize()}</span> 
-            <div style="flex: 1; border-bottom: 1px  #999; margin: 0 10px;"></div>
-            <span style="font-weight: 500;">{price}</span>
+        <div style="display: flex; align-items: center; ">
+            <span style="font-weight: 600; font-size: 14px;">{name.capitalize()}</span> 
+            <div style="flex: 1; border-bottom: 1px #999; margin: 0 10px;"></div>
+            <span style="font-weight: 500; margin-right: 100px;">{price}</span>
         </div>
         <div style="font-size: 12px; color: #666;">{desc}</div>
     </div>
@@ -112,9 +112,9 @@ def menu_item(name, price, desc="",cu="₹"):
     st.markdown(f"""
     <div style="margin-bottom: 12px;">
         <div style="display: flex; align-items: center;">
-            <span style="font-weight: 600;">{name.upper()}</span>
-            <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
-            <span style="font-weight: 500;">{"----" if price in [0, None] else f"{cu}{price}"}</span>
+            <span style="font-weight: 600; font-size: 14px;">{name.upper()}</span>
+            <div style="flex: 1; border-bottom: 1px #999; margin: 0 10px;"></div>
+            <span style="font-weight: 500; margin-right: 100px;">{"----" if price in [0, None] else f"{cu}{price}"}</span>
         </div>
         <div style="font-size: 12px; color: #666;">{desc}</div>
     </div>
@@ -125,11 +125,11 @@ def menu_item(name, price, desc="",cu="₹"):
 def menu_title_veg_nv(name="Name", veg_price="Veg", nonveg_price="Non Veg",desc=''):
     st.markdown(f"""
         <div style="margin-bottom: 12px;">
-            <div style="display: flex; align-items: center; border-bottom: 2px solid #999; padding-bottom: 4px; margin-bottom: 6px;">
+            <div style="display: flex; align-items: center; ">
                 <span style="font-weight: 600;">{name}</span>
-                <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
+                <div style="flex: 1; border-bottom: 1px #999; margin: 0 10px;"></div>
                 <div style="text-align: center;  margin-right: 25px;">Veg</div>
-                <div style="text-align: center;">Non Veg</div>
+                <div style="text-align: center; margin-right:90px;">Non Veg</div>
             </div>
             <div style="font-size: 12px; color: #666;">{desc}</div>
         </div>
@@ -140,9 +140,9 @@ def menu_item_veg_nv(name, veg_price=None, nonveg_price=None, cu="₹",desc=""):
         <div style="margin-bottom: 12px;">
             <div style="display: flex; align-items: center;">
                 <span style="font-weight: 600;">{name.upper()}</span>
-                <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
+                <div style="flex: 1; border-bottom: 1px #999;margin-right: 15px;"></div>
                 <div style="text-align: center;  margin-right: 30px;">{cu}{veg_price}</div>
-                <div style="text-align: center; margin-right:15px;">{cu}{nonveg_price}</div>
+                <div style="text-align: center; margin-right:105px;">{cu}{nonveg_price}</div>
             </div>
             <div style="font-size: 12px; color: #666;">{desc}</div>
         </div>
@@ -247,7 +247,7 @@ st.markdown("""
 
 
 
-# set_bg_local(r"img\bg.jpeg")
+set_bg_local(r"img\bg.jpeg")
 
 #================================================================================
 #START OF THE MAIN PAGE CONTENT
@@ -256,10 +256,10 @@ st.markdown("""
 #====================================================================================
 # Display the logo at the top of the page, centered, with a height of 200px
 #====================================================================================
-img = get_base64(r"img/logo.png")
+img = get_base64(r"img\logo.png")
 
 st.markdown(f"""
-    <div style="display:flex; justify-content:center; ">
+    <div style="display:flex; justify-content:center; margin-right: 50px;">
         <img src="data:image/png;base64,{img}" height="150px" alt="Logo">
     </div>
     
@@ -270,9 +270,9 @@ st.markdown(f"""
 # st.markdown("Welcome to Maya's Cafe!",text_alignment="center")
 st.markdown("""
 <div style="display: flex; align-items: center; text-align: center;">
-  <hr style="flex: 1; border: none; border-top: 2px solid #999;">
+  <hr style="flex: 1; border: none; border-top: 1px solid #999;">
   <span style="padding: 0 10px; font-weight: 800; font-size: 20px">MENU</span>
-  <hr style="flex: 1; border: none; border-top: 2px solid #999;">
+  <hr style="flex: 1; border: none; border-top: 1px solid #999; margin-right: 50px;">
 </div>
 """, unsafe_allow_html=True)
 
@@ -309,7 +309,7 @@ with tab1:
     with pasta_tab:
         pasta = get_doc_data(db,"menu","pasta")
         pasta_keys = list(pasta.keys())
-        pasta_title("Choice of pastas (Penne, Spaghetti, Macroni, Farfalle)","")
+        pasta_title("Choice of pastas","","(Penne, Spaghetti, Macroni, Farfalle)")
         menu_title_veg_nv("Choice of sauce")
     
         for name,vp,nvp in list(zip(pasta["name"],pasta["veg"],pasta["non-veg"])):
