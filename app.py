@@ -248,7 +248,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-tabs = st.tabs(["Food","Desserts","Beverages")
+tabs = st.tabs(["Food","Desserts","Beverages"])
 
 tab1=tabs[0]
 with tab1:
