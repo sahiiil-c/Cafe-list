@@ -200,7 +200,7 @@ st.markdown("""
 #====================================================================================
 # Display the logo at the top of the page, centered, with a height of 200px
 #====================================================================================
-img = get_base64(r"img\logo.png")
+img = get_base64(r"logo.png")
 
 st.markdown(f"""
     <div style="display:flex; justify-content:center; ">
