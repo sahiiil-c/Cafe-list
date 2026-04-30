@@ -110,7 +110,7 @@ def menu_title_veg_nv(name="Name", veg_price="Veg", nonveg_price="Non Veg",desc=
             <div style="display: flex; align-items: center;">
                 <span style="font-weight: 600;">{name}</span>
                 <div style="flex: 1; border-bottom: 1px dotted #999; margin: 0 10px;"></div>
-                <div style="text-align: center;  margin-right: 30px;">Veg</div>
+                <div style="text-align: center;  margin-right: 25px;">Veg</div>
                 <div style="text-align: center;">Non Veg</div>
             </div>
             <div style="font-size: 12px; color: #666;">{desc}</div>
