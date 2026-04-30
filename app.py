@@ -4,6 +4,24 @@ import time
 
 
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
+st.markdown("""
+    <style>
+        /* Remove top padding of whole page */
+        .block-container {
+            padding-top: 1rem !important;
+        }
+
+        /* Remove extra space above header/logo */
+        header {
+            visibility: hidden;
+        }
+
+        /* Optional: tighten main container */
+        .stApp {
+            margin-top: -20px;
+        }
+    </style>
+""", unsafe_allow_html=True)
 
 # hide the streamlit menu and footer
 hide_st_style = """
