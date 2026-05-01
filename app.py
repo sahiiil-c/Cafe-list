@@ -14,7 +14,7 @@ def get_base64(img_path):
 #====================================================================================
 img = get_base64(r"img/logo.png")
 
-st.set_page_config(page_title="Maya's Cafe", page_icon="img\logo.png", layout="wide")
+st.set_page_config(page_title="Maya's Cafe", page_icon="img/logo.png", layout="wide")
 # hide the streamlit menu and footer
 st.markdown("""
     <style>
