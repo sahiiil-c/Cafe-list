@@ -2,6 +2,17 @@ import base64
 import streamlit as st
 import time
 
+#==============================================================================================
+# Utility function to convert an image file to a base64 string for embedding in HTML/CSS
+#==============================================================================================
+def get_base64(img_path):
+    with open(img_path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+#====================================================================================
+# Display the logo at the top of the page, centered, with a height of 200px
+#====================================================================================
+img = get_base64(r"img/logo.png")
 
 st.set_page_config(page_title="Maya's Cafe", page_icon="☕", layout="wide")
 # hide the streamlit menu and footer
@@ -185,12 +196,7 @@ def start_app(path):
         placeholder.empty()
     return firestore.client()
 
-#==============================================================================================
-# Utility function to convert an image file to a base64 string for embedding in HTML/CSS
-#==============================================================================================
-def get_base64(img_path):
-    with open(img_path, "rb") as f:
-        return base64.b64encode(f.read()).decode()
+
 
 
 
@@ -253,10 +259,7 @@ set_bg_local(r"img/bg.jpeg")
 #START OF THE MAIN PAGE CONTENT
 #================================================================================
 
-#====================================================================================
-# Display the logo at the top of the page, centered, with a height of 200px
-#====================================================================================
-img = get_base64(r"img/logo.png")
+
 
 st.markdown(f"""
     <div style="display:flex; justify-content:center; margin-right: 50px;">
