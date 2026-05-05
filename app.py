@@ -360,6 +360,13 @@ with tab1:
         menu_title()
         for name,price in dict(zip(finger_bites["name"],finger_bites["price"])).items():
             menu_item(name,price) 
+
+    # flv_mh_tab = food_tabs[7] #ENTER YOUR TAB NUMBER HERE
+    # with trial_tab:
+    #     flv_mh = get_doc_data(db,"menu","flavour of maharashtra")
+    #     menu_title()
+    #     for name,price in dict(zip(flv_mh["name"],flv_mh["price"])).items():
+    #         menu_item(name,price)
         
     meal_bowls_tab = food_tabs[7]
     with meal_bowls_tab:
