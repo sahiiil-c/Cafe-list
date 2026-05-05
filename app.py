@@ -393,14 +393,16 @@ with tab1:
     beverages_tab = tabs[2]
     beverages=get_doc_data(db,"menu","beverages")
     with beverages_tab:
-        bev_tab=st.tabs(['Boba', 'Tea', 'Mocktails', 'Coffee', 'Milk shakes']) 
+        bev_tab=st.tabs(['Coffee', 'Tea', 'Boba', 'Mocktails', 'Milk Shakes']) 
         
-        boba_tab = bev_tab[0]
-        with boba_tab:
-            boba = beverages["boba"]
+
+
+        coffee_tab = bev_tab[0]
+        with coffee_tab:
+            coffee = beverages["coffee"]
             menu_title()
-            for name,price in dict(zip(boba["name"],boba["price"])).items():
-                menu_item(name,price) 
+            for name,price in dict(zip(coffee["name"],coffee["price"])).items():
+                menu_item(name,price)
                 
         tea_tab = bev_tab[1]
         with tea_tab:
@@ -408,21 +410,22 @@ with tab1:
             menu_title()
             for name,price in dict(zip(tea["name"],tea["price"])).items():
                 menu_item(name,price)
+
+        boba_tab = bev_tab[2]
+        with boba_tab:
+            boba = beverages["boba"]
+            menu_title()
+            for name,price in dict(zip(boba["name"],boba["price"])).items():
+                menu_item(name,price) 
                 
-        mocktails_tab = bev_tab[2]
+        mocktails_tab = bev_tab[3]
         with mocktails_tab:
             mocktails = beverages["mocktails"]
             menu_title()
             for name,price in dict(zip(mocktails["name"],mocktails["price"])).items():
                 menu_item(name,price)
                 
-        coffee_tab = bev_tab[3]
-        with coffee_tab:
-            coffee = beverages["coffee"]
-            menu_title()
-            for name,price in dict(zip(coffee["name"],coffee["price"])).items():
-                menu_item(name,price)
-                
+
         milk_shakes_tab = bev_tab[4]
         with milk_shakes_tab:
             milk_shakes = beverages["milk shakes"]
