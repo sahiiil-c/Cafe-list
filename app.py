@@ -333,17 +333,18 @@ with tab2:
 
     finger_bites_tab = food_tabs[2]
     with finger_bites_tab:
-        finger_bites = get_doc_data(db,"menu","finger bites")
+        finger_bites = get_doc_data(db,"menu","finger bites_new")
         menu_title()
         for name,price in dict(zip(finger_bites["name"],finger_bites["price"])).items():
             menu_item(name,price)
                 
     nachos_tab = food_tabs[3]
     with nachos_tab:
-        nachos = get_doc_data(db,"menu","nachos")
-        menu_title()
-        for name,price in dict(zip(nachos["name"],nachos["price"])).items():
-            menu_item(name,price) 
+        nachos = get_doc_data(db,"menu","nachos_veg_nv")
+        menu_title_veg_nv("Name")
+    
+        for name,vp,nvp in list(zip(nachos["name"],nachos["veg"],nachos["non-veg"])):
+            menu_item_veg_nv(name, veg_price=vp, nonveg_price=nvp) 
     
     
     momos_tab = food_tabs[4]
