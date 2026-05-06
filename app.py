@@ -307,7 +307,7 @@ div[data-baseweb="tab-list"]::after {
 
 tab1= tabs[0]
 with tab1:
-        pasta_title("Sandwich","","Plain / Grilled")
+        # pasta_title("Sandwich","","Plain / Grilled")
         sandwich = get_doc_data(db,"menu","maya's special")
         menu_title()
         for name,price in dict(zip(sandwich["name"],sandwich["price"])).items():
@@ -320,6 +320,7 @@ with tab2:
         
     sandwich_tab = food_tabs[0]
     with sandwich_tab:
+        pasta_title("Sandwich","","Plain / Grilled")
         sandwich = get_doc_data(db,"menu","sandwiches")
         menu_title()
         for name,price in dict(zip(sandwich["name"],sandwich["price"])).items():
