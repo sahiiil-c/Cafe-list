@@ -284,7 +284,7 @@ st.markdown("""
 
 
 
-tabs = st.tabs(["Maya's Special","Food","Desserts","Beverages","Flavour of maharashtra"])
+tabs = st.tabs(["Maya's Special","Food","Desserts","Beverages"])
 
 
 
