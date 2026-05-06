@@ -349,6 +349,7 @@ with tab2:
     
     momos_tab = food_tabs[4]
     with momos_tab:
+        pasta_title("Momos","","Steamed / Fried")
         momos = get_doc_data(db,"menu","momos")
         menu_title()
         for name,price in dict(zip(momos["name"],momos["price"])).items():
