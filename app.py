@@ -259,6 +259,9 @@ set_bg_local(r"img/bg.jpeg")
 #START OF THE MAIN PAGE CONTENT
 #================================================================================
 
+#====================================================================================
+# Display the logo at the top of the page, centered, with a height of 200px
+#====================================================================================
 
 
 st.markdown(f"""
@@ -280,9 +283,10 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-tabs = st.tabs(["Food","Desserts","Beverages"])
 
-tab1=tabs[0]
+tabs = st.tabs(["Maya's Special","Food","Desserts","Beverages","Flavour of maharashtra"])
+
+
 
 st.markdown("""
 <style>
@@ -301,32 +305,62 @@ div[data-baseweb="tab-list"]::after {
 </style>
 """, unsafe_allow_html=True)
 
+tab1= tabs[0]
 with tab1:
-    food_tabs= st.tabs(['Momos', 'Pizza', 'Sandwich', 'Pasta', 'Nachos', 'French fries', 'Finger bites', 'Meal bowls', 'Sizzlers'])
+        sandwich = get_doc_data(db,"menu","maya's special")
+        menu_title()
+        for name,price in dict(zip(sandwich["name"],sandwich["price"])).items():
+            menu_item(name,price) 
+tab2 = tabs[1]
+with tab2:
+    food_tabs= st.tabs(['Sandwiches','French Fries','Finger Bites','Nachos','Momos','Pizza','Pasta','Meal bowls', 'Sizzlers'])
     
-    momos_tab = food_tabs[0]
-    with momos_tab:
-        momos = get_doc_data(db,"menu","momos")
-        menu_title()
-        for name,price in dict(zip(momos["name"],momos["price"])).items():
-            menu_item(name,price) 
         
-    pizza_tab = food_tabs[1]
-    with pizza_tab:
-        pizza = get_doc_data(db,"menu","pizza")
-        menu_title()
-        for name,price in dict(zip(pizza["name"],pizza["price"])).items():
-            menu_item(name,price) 
         
-    sandwich_tab = food_tabs[2]
+    sandwich_tab = food_tabs[0]
     with sandwich_tab:
         sandwich = get_doc_data(db,"menu","sandwiches")
         menu_title()
         for name,price in dict(zip(sandwich["name"],sandwich["price"])).items():
             menu_item(name,price) 
             
+    french_fries_tab = food_tabs[1]
+    with french_fries_tab:
+        french_fries = get_doc_data(db,"menu","french fries")
+        menu_title()
+        for name,price in dict(zip(french_fries["name"],french_fries["price"])).items():
+            menu_item(name,price)
+
+    finger_bites_tab = food_tabs[2]
+    with finger_bites_tab:
+        finger_bites = get_doc_data(db,"menu","finger bites")
+        menu_title()
+        for name,price in dict(zip(finger_bites["name"],finger_bites["price"])).items():
+            menu_item(name,price)
+                
+    nachos_tab = food_tabs[3]
+    with nachos_tab:
+        nachos = get_doc_data(db,"menu","nachos")
+        menu_title()
+        for name,price in dict(zip(nachos["name"],nachos["price"])).items():
+            menu_item(name,price) 
     
-    pasta_tab = food_tabs[3]
+    
+    momos_tab = food_tabs[4]
+    with momos_tab:
+        momos = get_doc_data(db,"menu","momos")
+        menu_title()
+        for name,price in dict(zip(momos["name"],momos["price"])).items():
+            menu_item(name,price) 
+        
+    pizza_tab = food_tabs[5]
+    with pizza_tab:
+        pizza = get_doc_data(db,"menu","pizza")
+        menu_title()
+        for name,price in dict(zip(pizza["name"],pizza["price"])).items():
+            menu_item(name,price) 
+        
+    pasta_tab = food_tabs[6]
     with pasta_tab:
         pasta = get_doc_data(db,"menu","pasta")
         pasta_keys = list(pasta.keys())
@@ -337,36 +371,7 @@ with tab1:
             menu_item_veg_nv(name, veg_price=vp, nonveg_price=nvp)
         
         
-        # st.write("Pasta coming soon! Stay tuned 🍝")
-    
-    nachos_tab = food_tabs[4]
-    with nachos_tab:
-        nachos = get_doc_data(db,"menu","nachos")
-        menu_title()
-        for name,price in dict(zip(nachos["name"],nachos["price"])).items():
-            menu_item(name,price) 
-    
-    
-    french_fries_tab = food_tabs[5]
-    with french_fries_tab:
-        french_fries = get_doc_data(db,"menu","french fries")
-        menu_title()
-        for name,price in dict(zip(french_fries["name"],french_fries["price"])).items():
-            menu_item(name,price)
-
-    finger_bites_tab = food_tabs[6]
-    with finger_bites_tab:
-        finger_bites = get_doc_data(db,"menu","finger bites")
-        menu_title()
-        for name,price in dict(zip(finger_bites["name"],finger_bites["price"])).items():
-            menu_item(name,price) 
-
-    # flv_mh_tab = food_tabs[7] #ENTER YOUR TAB NUMBER HERE
-    # with trial_tab:
-    #     flv_mh = get_doc_data(db,"menu","flavour of maharashtra")
-    #     menu_title()
-    #     for name,price in dict(zip(flv_mh["name"],flv_mh["price"])).items():
-    #         menu_item(name,price)
+        # st.write("Pasta coming soon! Stay tuned 🍝") 
         
     meal_bowls_tab = food_tabs[7]
     with meal_bowls_tab:
@@ -388,7 +393,7 @@ with tab1:
             
             
     #DESSERTS
-    dessert_tab = tabs[1]
+    dessert_tab = tabs[2]
     with dessert_tab:
         desserts = get_doc_data(db,"menu","dessert")
         menu_title()
@@ -397,7 +402,7 @@ with tab1:
     
     
     
-    beverages_tab = tabs[2]
+    beverages_tab = tabs[3]
     beverages=get_doc_data(db,"menu","beverages")
     with beverages_tab:
         bev_tab=st.tabs(['Coffee', 'Tea', 'Boba', 'Mocktails', 'Milk Shakes']) 
