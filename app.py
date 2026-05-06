@@ -313,7 +313,7 @@ with tab1:
             menu_item(name,price) 
 tab2 = tabs[1]
 with tab2:
-    food_tabs= st.tabs(['Sandwiches','French Fries','Finger Bites','Nachos','Momos','Pizza','Pasta','Meal bowls', 'Sizzlers'])
+    food_tabs= st.tabs(['Sandwiches','French Fries','Finger Bites','Nachos','Momos','Straight from Oven','Pasta','Meal bowls', 'Sizzlers'])
     
         
         
