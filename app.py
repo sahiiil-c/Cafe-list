@@ -431,15 +431,15 @@ with tab2:
         with boba_tab:
             boba = beverages["boba"]
             menu_title()
-            for name,price in dict(zip(boba["name"],boba["price"])).items():
-                menu_item(name,price) 
+            for name,price,desc in list(zip(boba["name"],boba["price"],boba["desc"])):
+                menu_item(name,price,desc) 
                 
         mocktails_tab = bev_tab[3]
         with mocktails_tab:
             mocktails = beverages["mocktails"]
             menu_title()
-            for name,price in dict(zip(mocktails["name"],mocktails["price"])).items():
-                menu_item(name,price)
+            for name,price,desc in list(zip(mocktails["name"],mocktails["price"],mocktails["desc"])):
+                menu_item(name,price,desc)
                 
 
         milk_shakes_tab = bev_tab[4]
