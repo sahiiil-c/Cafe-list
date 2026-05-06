@@ -439,7 +439,7 @@ with tab2:
             mocktails = beverages["mocktails"]
             menu_title()
             for name,price in dict(zip(mocktails["name"],mocktails["price"])).items():
-                menu_item(name,price,"Description")
+                menu_item(name,price)
                 
 
         milk_shakes_tab = bev_tab[4]
