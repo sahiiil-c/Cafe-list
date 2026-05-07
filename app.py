@@ -344,7 +344,7 @@ tab1= tabs[0]
 with tab1:
         specials = data[r"maya's special"]
         menu_title()
-        for name,price in dict(zip(specials["name"],specials["price"])).items():
+        for name,price in list(zip(specials["name"],specials["price"])):
             menu_item(name,price) 
 tab2 = tabs[1]
 with tab2:
@@ -357,21 +357,21 @@ with tab2:
         pasta_title("Sandwich","","Plain / Grilled")
         sandwich = data["sandwiches"]
         menu_title()
-        for name,price in dict(zip(sandwich["name"],sandwich["price"])).items():
+        for name,price in list(zip(sandwich["name"],sandwich["price"])):
             menu_item(name,price) 
             
     french_fries_tab = food_tabs[1]
     with french_fries_tab:
         french_fries = data["french fries"]
         menu_title()
-        for name,price in dict(zip(french_fries["name"],french_fries["price"])).items():
+        for name,price in list(zip(french_fries["name"],french_fries["price"])):
             menu_item(name,price)
 
     finger_bites_tab = food_tabs[2]
     with finger_bites_tab:
         finger_bites = data["finger bites_new"]
         menu_title()
-        for name,price in dict(zip(finger_bites["name"],finger_bites["price"])).items():
+        for name,price in list(zip(finger_bites["name"],finger_bites["price"])):
             menu_item(name,price)
                 
     nachos_tab = food_tabs[3]
@@ -388,14 +388,14 @@ with tab2:
         pasta_title("Momos","","Steamed / Fried")
         momos = data["momos"]
         menu_title()
-        for name,price in dict(zip(momos["name"],momos["price"])).items():
+        for name,price in list(zip(momos["name"],momos["price"])):
             menu_item(name,price) 
         
     pizza_tab = food_tabs[5]
     with pizza_tab:
         pizza = data["pizza"]
         menu_title()
-        for name,price in dict(zip(pizza["name"],pizza["price"])).items():
+        for name,price in list(zip(pizza["name"],pizza["price"])):
             menu_item(name,price) 
         
     pasta_tab = food_tabs[6]
@@ -414,7 +414,7 @@ with tab2:
     with meal_bowls_tab:
         meal_bowls = data["meal bowl"]
         menu_title()
-        for name,price in dict(zip(meal_bowls["name"],meal_bowls["price"])).items():
+        for name,price in list(zip(meal_bowls["name"],meal_bowls["price"])):
             menu_item(name,price) 
 
 
@@ -423,7 +423,7 @@ with tab2:
     with sizzler_tab:
         sizzlers = data["sizzlers"]
         menu_title()
-        for name,price in dict(zip(sizzlers["name"],sizzlers["price"])).items():
+        for name,price in list(zip(sizzlers["name"],sizzlers["price"])):
             menu_item(name,price) 
         
        
@@ -434,7 +434,7 @@ with tab2:
     with dessert_tab:
         desserts = data["dessert"]
         menu_title()
-        for name,price in dict(zip(desserts["name"],desserts["price"])).items():
+        for name,price in list(zip(desserts["name"],desserts["price"])):
             menu_item(name,price) 
     
     
@@ -450,14 +450,14 @@ with tab2:
         with coffee_tab:
             coffee = beverages["coffee"]
             menu_title()
-            for name,price in dict(zip(coffee["name"],coffee["price"])).items():
+            for name,price in list(zip(coffee["name"],coffee["price"])):
                 menu_item(name,price)
                 
         tea_tab = bev_tab[1]
         with tea_tab:
             tea = beverages["tea"]
             menu_title()
-            for name,price in dict(zip(tea["name"],tea["price"])).items():
+            for name,price in list(zip(tea["name"],tea["price"])):
                 menu_item(name,price)
 
         boba_tab = bev_tab[2]
